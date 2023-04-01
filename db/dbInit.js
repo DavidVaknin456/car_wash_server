@@ -2,7 +2,6 @@ const { Pool } = require("pg");
 const express = require("express");
 const admin = require("../util/Firebaseadmin/firebaseInit");
 const { getAuth } = require("firebase-admin/auth");
-const router = express.Router();
 
 const pool = new Pool({
   user: "newuser",

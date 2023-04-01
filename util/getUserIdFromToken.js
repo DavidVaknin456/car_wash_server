@@ -1,11 +1,12 @@
 const { getAuth } = require("firebase-admin/auth");
 const res = require("express/lib/response");
 
-const verifyToken = async (token) => {
+const getUserIdFromToken = async (req) => {
   try {
-    const decodedToken = await getAuth().verifyIdToken(token);
+    const idToken = req.header("authorization").split(" ")[1];
+    const decodedToken = await getAuth().verifyIdToken(idToken);
     console.log(decodedToken.email);
-    console.log(decodedToken.uid);
+    //console.log(decodedToken.uid);
     return decodedToken.uid;
   } catch (error) {
     console.log(error);
@@ -14,4 +15,4 @@ const verifyToken = async (token) => {
   }
 };
 
-module.exports = verifyToken;
+module.exports = getUserIdFromToken;
